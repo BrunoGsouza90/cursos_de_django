@@ -1,0 +1,9 @@
+PostgreSQL:
+
+psql -U nome_do_usuario -h nome_do_host -p numero_da_porta -d nome_do_novo_banco_de_dados -f "C:\\backup_exata.sql"
+
+MySQL:
+
+mysql -u nome_do_usuario -h nome_do_host -P numero_da_porta -p nome_do_novo_banco_de_dados < "C:\\backup_exata.sql"
+
+Obs.: Coloque o .sql no final do nome do arquivo.
