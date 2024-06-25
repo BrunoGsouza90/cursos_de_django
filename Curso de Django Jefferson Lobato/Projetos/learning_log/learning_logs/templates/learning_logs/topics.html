@@ -9,7 +9,7 @@
         {% for topic in topics %}
             
             <li>
-                <a href="{% url 'topic' topic.id %}">{{ topic }}</a>
+                <label for="codigo">{{ topic.id }} - <a href="{% url 'topic' topic.id %}">{{ topic }}</a></label>
             </li>
         {% empty %}
             <li>Não há tópicos adicionados.</li>
@@ -17,4 +17,5 @@
 
     </ul>
 
+    <a href="{% url 'new_topic' %}">Adicionar novos tópicos</a>
 {% endblock content %}
