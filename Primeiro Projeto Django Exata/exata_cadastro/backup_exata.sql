@@ -560,6 +560,7 @@ COPY public.exatas_cadastros_cadastro (id, descricao, valor, data, categoria_id,
 26	Bruno	1500.00	2024-06-13	1	1
 27	Contas Gerais	1500.30	2021-03-11	1	1
 28	teste	200.00	2024-06-20	1	1
+29	Contas Gerais	300.00	2024-06-12	4	9
 \.
 
 
@@ -693,7 +694,7 @@ SELECT pg_catalog.setval('public.exatas_cadastros_conta_id_seq', 13, true);
 -- Name: exatas_cadastros_lancamento_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.exatas_cadastros_lancamento_id_seq', 28, true);
+SELECT pg_catalog.setval('public.exatas_cadastros_lancamento_id_seq', 29, true);
 
 
 --
