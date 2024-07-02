@@ -15,14 +15,4 @@ urlpatterns = [
     
     # ex: /polls/5/vote/
     path('<int:question_id>/vote/', views.vote, name='vote'),
-
-    path('cadastro/',views.casa, name= 'casa'),
-
-    path('pagina/',views.pagina, name='pagina'),
-
-    path('outraum/<slug:numero>/', views.outraum, name='outraum'),
-
-    path('outradois/<slug:numero>/', views.outradois, name='outradois'),
-
-    path('outratres/<slug:numero>/', views.outratres, name='outratres'),
 ]
