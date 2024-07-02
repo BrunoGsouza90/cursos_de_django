@@ -1,0 +1,13 @@
+.verde {
+	color: green;
+	font-size: 42px;
+}
+
+p {
+	color: red;
+	font-weight: bold;
+}
+
+#p2{
+	text-decoration: underline;
+}
