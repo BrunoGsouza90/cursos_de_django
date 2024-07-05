@@ -24,10 +24,7 @@ def login_view(request):
     context = {'form': form, 'error': error}
     return render(request, 'users/login.html', context)
 
+@login_required
 def logout_view(request):
     logout(request)
     return HttpResponseRedirect(reverse('login'))
-
-@login_required
-def pagina_inicial_protegida(request):
-    return render(request, 'pagina_inicial.html')
