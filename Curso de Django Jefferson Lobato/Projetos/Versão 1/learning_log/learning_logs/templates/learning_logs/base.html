@@ -1,0 +1,12 @@
+<p>
+    {% if user.is_authenticated %}
+        Olá, {{ user.username }}!
+        <a href="{% url 'index' %}">Learning Log</a> -
+        <a href="{% url 'topics' %}">Tópicos</a>
+        <a href="{% url 'logout' %}">Sair</a>
+    {% else %}
+        <a href="{% url 'login' %}"><button>Home</button></a>
+    {% endif %}
+</p>
+
+{% block content %}{% endblock content %}
