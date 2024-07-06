@@ -1,3 +1,4 @@
-from django.contrib import admin
+from django.contrib import admin # type: ignore
+from projeto_eventos.models import Evento
 
-# Register your models here.
+admin.site.register(Evento)
