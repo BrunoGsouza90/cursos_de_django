@@ -3,4 +3,5 @@ from . import views # type: ignore
 
 urlpatterns = [
     path('', views.home, name='home'),
+    path('contato/',views.contato, name='contato'),
 ]

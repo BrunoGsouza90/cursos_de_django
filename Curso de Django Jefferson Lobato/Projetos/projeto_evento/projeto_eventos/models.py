@@ -29,21 +29,21 @@ class Categoria(models.Model):
         ordering = ['id']
 
 class Evento(models.Model):
-    titulo = models.CharField(max_length=30, unique=True, blank=True)
+    titulo = models.CharField(max_length=50, unique=True, blank=True)
     descricao = models.CharField(max_length=1000, blank=True)
     rua = models.CharField(max_length=50, blank=True)
-    bairro = models.CharField(max_length=30, blank=True)
+    bairro = models.CharField(max_length=50, blank=True)
     numero = models.IntegerField(blank=True)
-    cidade = models.CharField(max_length=30, blank=True)
+    cidade = models.CharField(max_length=50, blank=True)
     estado = models.CharField(max_length=2, blank=True)
-    pais = models.CharField(max_length=30, blank=True)
-    data = models.DateField(blank=True)
+    pais = models.CharField(max_length=50, blank=True)
+    data = models.DateTimeField(blank=True)
     imagem = models.ImageField(upload_to='eventos_imagens/', null=True, blank=True)
     organizador = models.ForeignKey(Organizador, on_delete=models.SET_NULL, null=True, blank=True)
     categoria = models.ForeignKey(Categoria, on_delete=models.SET_NULL, null=True, blank=True)
 
     def __str__(self):
-        return f'{self.id} - {self.titulo}'
+        return f'{self.data} - {self.titulo}'
     
     class Meta:
         verbose_name = 'Evento'

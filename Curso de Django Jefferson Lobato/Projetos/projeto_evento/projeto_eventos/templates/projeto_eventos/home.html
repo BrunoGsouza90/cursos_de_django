@@ -1,13 +1,18 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'output.css' %}">
-    <title>Eventos</title>
-</head>
-<body class="bg-blue-200">
-    
-</body>
-</html>
+{% extends 'projeto_eventos/base.html' %}
+
+{% block content %}
+    <div class="grid grid-cols-3 gap-4">
+        {% for evento in lista_eventos %}
+            <div class="flex flex-col items-center">
+                {% if evento.imagem %}
+                    <img src="{{ evento.imagem.url }}" alt="{{ evento.titulo }}" class="w-full h-auto rounded-lg mb-2">
+                {% else %}
+                    <p>Imagem não disponível</p>
+                {% endif %}
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    {{ evento.titulo }}
+                </button>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock content %}

@@ -52,6 +52,3 @@ Agendamento de Eventos: Implementar um sistema de calendário para exibir evento
 Testar o projeto localmente para garantir que todas as funcionalidades estejam funcionando corretamente.
 Fazer o deploy do projeto em um ambiente de produção.
 Este é um esboço geral e complexo de como seria desenvolver um site de eventos utilizando Django. Cada etapa pode ser dividida em tarefas menores e implementada gradualmente conforme a necessidade e o escopo do projeto.
-
-
-
