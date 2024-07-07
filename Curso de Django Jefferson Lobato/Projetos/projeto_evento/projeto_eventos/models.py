@@ -38,7 +38,7 @@ class Evento(models.Model):
     estado = models.CharField(max_length=2, blank=True)
     pais = models.CharField(max_length=50, blank=True)
     data = models.DateTimeField(blank=True)
-    imagem = models.ImageField(upload_to='eventos_imagens/', null=True, blank=True)
+    imagem = models.ImageField(null=True, blank=True, upload_to="imagem_pics/")
     organizador = models.ForeignKey(Organizador, on_delete=models.SET_NULL, null=True, blank=True)
     categoria = models.ForeignKey(Categoria, on_delete=models.SET_NULL, null=True, blank=True)
 
@@ -49,3 +49,12 @@ class Evento(models.Model):
         verbose_name = 'Evento'
         verbose_name_plural = 'Eventos'
         ordering = ['data']
+
+class Contato(models.Model):
+    nome = models.CharField(max_length=100)
+    email = models.EmailField()
+    mensagem = models.TextField()
+    data_envio = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Mensagem de {self.nome} em {self.data_envio.strftime('%Y-%m-%d %H:%M:%S')}"

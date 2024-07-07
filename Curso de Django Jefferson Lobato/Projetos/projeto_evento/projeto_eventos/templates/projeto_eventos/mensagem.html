@@ -1,0 +1,23 @@
+{% extends 'projeto_eventos/base.html' %}
+
+{% block content %}
+
+    {% for m in msg %}
+
+        <hr class="my-6 border-gray-300">
+
+        <div class="text-center mt-10">
+            {{ m.nome }}
+            <br>
+            {{ m.email }}
+            <br>
+            {{ m.mensagem }}
+            <br>
+            {{ m.data_envio }}
+        </div>
+
+        <hr class="my-6 border-gray-300">
+
+    {% endfor %}
+
+{% endblock %}

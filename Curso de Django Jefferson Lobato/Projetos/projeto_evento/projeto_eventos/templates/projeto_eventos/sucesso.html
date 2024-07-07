@@ -1,0 +1,17 @@
+{% extends 'projeto_eventos/base.html' %}
+
+{% block content %}
+    <div class="max-w-lg mx-auto bg-white shadow p-8 rounded-lg m-4 p-4 border-2 border-gray-400">
+        <h1 class="text-3xl font-bold text-gray-800 text-center mb-8 mt-10">Mensagem Enviada</h1>
+        <p class="text-center">Sua mensagem foi enviada com sucesso!</p>
+    </div>
+
+    {% for c in contato %}
+
+        {{ c.nome }}
+        {{ c.email }}
+        {{ c.mensagem }}
+
+    {% endfor %}
+
+{% endblock %}

@@ -25,6 +25,20 @@
                 <div class="flex items-center space-x-4">
                 <a href="{% url 'home' %}"
                     class="bg-gradient-to-r from-pink-100 via-purple-200 to-blue-300 bg-opacity-30 text-black text-xl font-serif font-bold hover:text-white py-4 px-6 rounded-full shadow-lg transition duration-300 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50 hover:scale-110 focus:scale-110 border border-transparent hover:border-blue-500 focus:border-blue-500">Início</a>
+                
+                <div class="relative">
+                    <div class="relative">
+                        <div id="dropdownButton" class="bg-gradient-to-r from-pink-100 via-purple-200 to-blue-300 bg-opacity-30 text-black text-xl font-serif font-bold hover:text-white py-4 px-6 rounded-full shadow-lg transition duration-300 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50 hover:scale-110 focus:scale-110 border border-transparent flex items-center cursor-pointer">
+                            Categorias &nbsp; &#9910;
+                        </div>
+                        <div id="dropdownMenu" class="hidden absolute bg-white border border-gray-200 mt-1 py-2 rounded-md shadow-lg">
+                            {% for categoria in categorias %}
+                                <a href="{% url 'categorias' categoria.id %}" class="block px-4 py-2 text-sm text-gray-700 hover:bg-blue-500 hover:text-white">{{ categoria.nome }}</a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+
                 <a href="#"
                     class="bg-gradient-to-r from-pink-100 via-purple-200 to-blue-300 bg-opacity-30 text-black text-xl font-serif font-bold hover:text-white py-4 px-6 rounded-full shadow-lg transition duration-300 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50 hover:scale-110 focus:scale-110 border border-transparent hover:border-blue-500 focus:border-blue-500">Sobre</a>
                 <a href="#"
@@ -73,8 +87,7 @@
         </div>
     </nav>
 
-    {% block content %}{% endblock content %}
-
+    {% block content %} {% endblock content %}
 
     <footer class="footer bg-gradient-to-b from-pink-200 via-purple-300 to-blue-400 bg-opacity-50 text-white py-6 bottom-0 mt-10 h-60">
         <div class="container mx-auto flex flex-wrap justify-between items-center mt-11">
@@ -123,37 +136,39 @@
         document.addEventListener('DOMContentLoaded', function () {
             const mobileMenuButton = document.getElementById('mobileMenuButton');
             const mobileMenu = document.getElementById('mobileMenu');
+
             const userMenuButton = document.getElementById('userMenuButton');
             const userMenu = document.getElementById('userMenu');
-            const userMenuButtonMobile = document.getElementById('userMenuButtonMobile');
-            const userMenuMobile = document.getElementById('userMenuMobile');
 
-            mobileMenuButton.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-            });
+            const dropdownButton = document.getElementById('dropdownButton');
+            const dropdownMenu = document.getElementById('dropdownMenu');
 
-            userMenuButton.addEventListener('click', () => {
+            function closeMenus(event) {
+                if (!userMenu.contains(event.target) && !userMenuButton.contains(event.target)) {
+                    userMenu.classList.add('hidden');
+                }
+
+                if (!dropdownMenu.contains(event.target) && event.target !== dropdownButton) {
+                    dropdownMenu.classList.add('hidden');
+                }
+            }
+
+            document.addEventListener('click', closeMenus);
+
+            if (mobileMenuButton) {
+                mobileMenuButton.addEventListener('click', function () {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+
+            userMenuButton.addEventListener('click', function () {
                 userMenu.classList.toggle('hidden');
             });
 
-            userMenuButtonMobile.addEventListener('click', () => {
-                userMenuMobile.classList.toggle('hidden');
-            });
-
-            document.addEventListener('click', function(event) {
-                const isClickInsideUserMenu = userMenu.contains(event.target);
-                const isClickInsideUserMenuMobile = userMenuMobile.contains(event.target);
-                const isClickInsideUserMenuButton = userMenuButton.contains(event.target);
-                const isClickInsideUserMenuButtonMobile = userMenuButtonMobile.contains(event.target);
-
-                if (!isClickInsideUserMenu && !isClickInsideUserMenuMobile && !isClickInsideUserMenuButton && !isClickInsideUserMenuButtonMobile) {
-                    userMenu.classList.add('hidden');
-                    userMenuMobile.classList.add('hidden');
-                }
+            dropdownButton.addEventListener('click', function () {
+                dropdownMenu.classList.toggle('hidden');
             });
         });
-
-        
     </script>
     
 
