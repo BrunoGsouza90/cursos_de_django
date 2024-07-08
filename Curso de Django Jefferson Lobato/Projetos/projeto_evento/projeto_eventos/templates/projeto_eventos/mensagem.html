@@ -1,9 +1,9 @@
-{% extends 'projeto_eventos/base.html' %}
+{% extends 'projeto_eventos/base_logado.html' %}
 
 {% block content %}
 
-    {% for m in msg %}
-
+    <div class="flex-1 p-8">
+        {% for m in msg %}
         <hr class="my-6 border-gray-300">
 
         <div class="text-center mt-10">
@@ -17,7 +17,7 @@
         </div>
 
         <hr class="my-6 border-gray-300">
-
-    {% endfor %}
+        {% endfor %}
+    </div>
 
 {% endblock %}

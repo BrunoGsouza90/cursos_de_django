@@ -12,19 +12,13 @@ def home(request):
 def contato(request):
 
     if request.method == 'POST':
-        # Captura os dados do formulário
         nome = request.POST.get('name')
         email = request.POST.get('email')
         mensagem = request.POST.get('message')
-
-        # Salva os dados no banco de dados com a data de envio automática
         mensagem_contato = Contato(nome=nome, email=email, mensagem=mensagem)
         mensagem_contato.save()
 
-        # Redireciona para uma página de sucesso após o envio
         return HttpResponseRedirect(reverse('sucesso'))
-
-    # Se o método HTTP não for POST, renderiza o formulário vazio
 
     return render(request, 'projeto_eventos/contato.html')
 
@@ -39,6 +33,12 @@ def sucesso(request):
     return render(request,'projeto_eventos/sucesso.html')
 
 def mensagens(request):
-    msg = Contato.objects.all()
-    context = {'msg': msg}
+    categorias = Categoria.objects.all()
+    msg = Contato.objects.all().order_by('-data_envio')
+    context = {'msg': msg, 'categorias': categorias}
     return render(request, 'projeto_eventos/mensagem.html', context)
+
+def sobre(request):
+    categorias = Categoria.objects.all()
+    context = {'categorias': categorias}
+    return render(request,'projeto_eventos/sobre.html', context)

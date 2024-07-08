@@ -21,4 +21,4 @@ class Entry(models.Model):
 
     def __str__(self):
         '''Devolve uma represetação en string do modelo.'''
-        return f'{self.id} - {self.text[:50] + '...'}'
+        return f"{self.id} - {self.text[:50] + '...'}"
