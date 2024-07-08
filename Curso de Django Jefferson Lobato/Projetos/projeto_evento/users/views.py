@@ -3,10 +3,12 @@ from django.shortcuts import render, HttpResponseRedirect # type: ignore
 from django.contrib.auth import authenticate, login, logout # type: ignore
 from django.contrib.auth.decorators import login_required # type: ignore
 from .forms import LoginForm
+from projeto_eventos.models import Categoria
 
 def login_view(request):
-    context = {}  # Defina context inicialmente
-    
+    categorias = Categoria.objects.all()
+    context = {'categorias': categorias}
+
     if request.method == 'POST':
         form = LoginForm(request.POST)
         if form.is_valid():
@@ -20,14 +22,16 @@ def login_view(request):
             else:
                 # Trate o erro de credenciais inválidas aqui
                 error = "Login ou senha incorretos. Por favor, tente novamente."
-                context = {'form': form, 'error': error}
+                context['form'] = form
+                context['error'] = error
+        else:
+            context['form'] = form
     else:
         form = LoginForm()
-        context = {'form': form}  # Defina context mesmo fora do POST
+        context['form'] = form  # Defina context mesmo fora do POST
 
     return render(request, 'users/login.html', context)
 
-@login_required
 def logout_view(request):
     logout(request)
     return HttpResponseRedirect(reverse('login'))

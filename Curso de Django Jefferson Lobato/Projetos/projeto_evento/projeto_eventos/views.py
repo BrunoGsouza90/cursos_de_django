@@ -11,6 +11,8 @@ def home(request):
 
 def contato(request):
 
+    categorias = Categoria.objects.all()
+
     if request.method == 'POST':
         nome = request.POST.get('name')
         email = request.POST.get('email')
@@ -19,8 +21,10 @@ def contato(request):
         mensagem_contato.save()
 
         return HttpResponseRedirect(reverse('sucesso'))
+    
+    context = {'categorias': categorias}
 
-    return render(request, 'projeto_eventos/contato.html')
+    return render(request, 'projeto_eventos/contato.html', context)
 
 def categorias(request, categoria_id):
     categorias = Categoria.objects.all()
