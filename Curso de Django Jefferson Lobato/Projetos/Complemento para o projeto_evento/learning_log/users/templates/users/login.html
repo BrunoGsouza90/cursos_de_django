@@ -1,0 +1,21 @@
+{% extends "learning_logs/base.html" %}
+
+{% block content %}
+
+    {% if error %}
+        <p>Seu login e senha estão incorretos. Por favor, tente novamente.</p>
+    {% endif %}
+
+    <form action="{% url 'login' %}" method="post">
+        
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <button type="submit">Entrar</button>
+        <br><br>
+        <a href="{% url 'register' %}">Criar conta</a>
+
+
+    </form>
+
+{% endblock content %}
