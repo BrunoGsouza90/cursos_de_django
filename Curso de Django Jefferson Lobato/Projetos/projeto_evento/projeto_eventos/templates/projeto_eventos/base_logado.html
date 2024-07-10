@@ -47,11 +47,18 @@
                 <div class="relative flex-shrink-0">
                     <div class="relative">
                         <button id="userMenuButton"
-                            class="flex items-center text-gray-300 hover:text-white focus:outline-none">
-                            <img class="w-24 h-24 rounded-full transition-transform hover:scale-110 focus:scale-110 border-2 border-transparent hover:border-blue-500 focus:border-blue-500"
-                                src="https://randomuser.me/api/portraits/women/32.jpg"
-                                alt="Imagem de Perfil">
-                                <span class="ml-2 text-black text-2xl font-bold font-serif ">&nbsp;&nbsp;Bem vindo, {{ user.username }}</span>
+                        class="flex items-center text-gray-300 hover:text-white focus:outline-none">
+                            {% if user.profile.foto %}
+                                <img class="w-24 h-24 rounded-full transition-transform hover:scale-110 focus:scale-110 border-2 border-transparent hover:border-blue-500 focus:border-blue-500"
+                                    src="{{ user.profile.foto.url }}"
+                                    alt="Imagem de Perfil">
+                                    <span class="ml-2 text-black text-2xl font-bold font-serif">&nbsp;&nbsp;Bem vindo, {{ user.username }}</span>
+                            {% else %}
+                                <img class="w-24 h-24 rounded-full transition-transform hover:scale-110 focus:scale-110 border-2 border-transparent hover:border-blue-500 focus:border-blue-500"
+                                    src="{% static 'Perfil.png' %}"
+                                    alt="Imagem de Perfil Padrão">
+                                    <span class="ml-2 text-black text-2xl font-bold font-serif">&nbsp;&nbsp;Bem vindo, {{ user.username }}</span>
+                            {% endif %}
                         </button>
                         
                         <div id="userMenu"

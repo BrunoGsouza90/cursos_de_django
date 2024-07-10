@@ -86,12 +86,25 @@ def register(request):
 def editar_perfil(request, username):
     categorias = Categoria.objects.all()
     usuario = get_object_or_404(User, username=username)
-    profile = Profile.objects.get_or_create(user=usuario)[0]
+    profile = usuario.profile
 
     if request.method == "POST":
         form = RegisterForm(request.POST, request.FILES, instance=usuario)
         if form.is_valid():
-            form.save()
+            user = form.save(commit=False)
+            profile.ddd = form.cleaned_data['ddd']
+            profile.telefone = form.cleaned_data['telefone']
+            profile.nickname = form.cleaned_data['nickname']
+            profile.sobre_voce = form.cleaned_data['sobre_voce']
+
+            if form.cleaned_data.get('foto'):
+                profile.foto = form.cleaned_data['foto']
+
+            if form.cleaned_data.get('foto_de_capa'):
+                profile.foto_de_capa = form.cleaned_data['foto_de_capa']
+
+            user.save()
+            profile.save()
             return redirect('editar_perfil', username=usuario.username)
     else:
         initial_data = {
