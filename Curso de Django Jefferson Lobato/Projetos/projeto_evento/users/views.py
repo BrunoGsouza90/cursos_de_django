@@ -1,10 +1,10 @@
 from django.urls import reverse # type: ignore
-from django.shortcuts import render, HttpResponseRedirect # type: ignore
+from django.shortcuts import render, redirect, HttpResponseRedirect # type: ignore
 from django.contrib.auth import authenticate, login, logout # type: ignore
 from django.contrib.auth.decorators import login_required # type: ignore
 from .forms import LoginForm
 from projeto_eventos.models import Categoria
-from .forms import CustomUserCreationForm
+from django.contrib.auth.forms import UserCreationForm
 
 def login_view(request):
     categorias = Categoria.objects.all()
@@ -38,15 +38,19 @@ def logout_view(request):
     return HttpResponseRedirect(reverse('login'))
 
 def register(request):
-    if request.method == 'POST':
-        form = CustomUserCreationForm(request.POST, request.FILES)
+    """Faz o cadastro de um novo usuário."""
+    if request.method == "POST":
+        form = UserCreationForm(data=request.POST)
 
         if form.is_valid():
-            form.save()
-        return HttpResponseRedirect(reverse('home'))
+            new_user = form.save()
+            authenticated_user = authenticate(username=new_user.username, password=request.POST['password1'])
+            login(request, authenticated_user)
+            if authenticated_user:
+                return HttpResponseRedirect(reverse('home'))
     
     else:
-        form = CustomUserCreationForm()
+        form = UserCreationForm()
 
-    context = {'form': form}
+    context = {"form": form}
     return render(request, 'users/register.html', context)

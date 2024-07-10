@@ -1,38 +1,31 @@
-from django.contrib.auth.models import User
-from django import forms
-from django.core.exceptions import ValidationError
-from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth import get_user_model
+from django.contrib.auth.models import User  # type: ignore
+from django import forms # type: ignore
+from django.core.exceptions import ValidationError # type: ignore
 
+'''
+class LoginForm(forms.Form):
+    username = forms.CharField(label='Login', widget=forms.TextInput(attrs={'placeholder': ''}))
+    password = forms.CharField(label='Senha', widget=forms.PasswordInput(attrs={'placeholder': ''}))
+'''
 
 class LoginForm(forms.Form):
-    username = forms.CharField(label='Usuário')
-    password = forms.CharField(label='Senha', widget=forms.PasswordInput)
+    login = forms.CharField(max_length=30, required=True)
+    senha = forms.CharField(max_length=30, widget=forms.PasswordInput(), required=True)
 
-    def limpar_login(self):
-        
+    # Se eu precisar pegar dois campos ao mesmo tempo ou mais
+    #   utilizo a função clean da seguinte maneira.
+    """
+    def clean(self):
+        cleaned_data = super().clean()
+        nome = cleaned_data.get('login')
+        senha = cleaned_data.get('senha')
+    """
+
+    def clean_login(self):
+
         nome = self.cleaned_data['login']
 
         if not(nome.isalnum()):
             raise ValidationError('O nome de usuário não pode ter caractere especial.')
         
         return nome
-    
-CustomUser = get_user_model()
-
-class CustomUserCreationForm(UserCreationForm):
-    sobre_voce = forms.CharField(label='Sobre você', widget=forms.Textarea(attrs={'rows': 8}))
-    foto = forms.ImageField(label='Foto', required=False)
-    foto_de_capa = forms.ImageField(label='Foto de capa', required=False)
-    primeiro_nome = forms.CharField(label='Primeiro nome')
-    ultimo_nome = forms.CharField(label='Último nome')
-    email = forms.EmailField(label='Endereço de email')
-    pais = forms.CharField(label='País')
-    cidade = forms.CharField(label='Cidade')
-    endereco = forms.CharField(label='Endereço')
-    telefone = forms.CharField(label='Número de telefone')
-
-    class Meta(UserCreationForm.Meta):
-        model = CustomUser
-        fields = ('username', 'password1', 'password2', 'sobre_voce', 'foto', 'foto_de_capa',
-                  'primeiro_nome', 'ultimo_nome', 'email', 'pais', 'cidade', 'endereco', 'telefone')
