@@ -6,6 +6,7 @@ from .forms import LoginForm
 
 def login_view(request):
     error = False
+    categorias = Cate
 
     if request.method == 'POST':
         form = LoginForm(request.POST)

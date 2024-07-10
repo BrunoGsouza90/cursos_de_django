@@ -4,6 +4,7 @@ from django.contrib.auth import authenticate, login, logout # type: ignore
 from django.contrib.auth.decorators import login_required # type: ignore
 from .forms import LoginForm
 from projeto_eventos.models import Categoria
+from .forms import CustomUserCreationForm
 
 def login_view(request):
     categorias = Categoria.objects.all()
@@ -35,3 +36,17 @@ def login_view(request):
 def logout_view(request):
     logout(request)
     return HttpResponseRedirect(reverse('login'))
+
+def register(request):
+    if request.method == 'POST':
+        form = CustomUserCreationForm(request.POST, request.FILES)
+
+        if form.is_valid():
+            form.save()
+        return HttpResponseRedirect(reverse('home'))
+    
+    else:
+        form = CustomUserCreationForm()
+
+    context = {'form': form}
+    return render(request, 'users/register.html', context)
