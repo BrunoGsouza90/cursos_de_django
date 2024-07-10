@@ -1,9 +1,11 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
-from .forms import RegisterForm, LoginForm  # Importe os formulários RegisterForm e LoginForm
-from projeto_eventos.models import Categoria
+from .forms import RegisterForm, LoginForm, EventoForm
+from projeto_eventos.models import Categoria, Evento
+from django.contrib.auth.models import User
+from .models import Profile
+from django.contrib import messages
 
 def login_view(request):
     categorias = Categoria.objects.all()
@@ -17,7 +19,7 @@ def login_view(request):
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 login(request, user)
-                return redirect('home')  # Redirecionar para a página desejada após o login
+                return redirect('home')
             else:
                 error = "Login ou senha incorretos. Por favor, tente novamente."
                 context['form'] = form
@@ -47,7 +49,9 @@ def register(request):
             last_name = form.cleaned_data['last_name']
             email = form.cleaned_data['email']
             password1 = form.cleaned_data['password1']
-            password2 = form.cleaned_data['password2']
+            nickname = form.cleaned_data.get('nickname', '')
+            ddd = form.cleaned_data['ddd']
+            telefone = form.cleaned_data['telefone']
 
             new_user = form.save(commit=False)
             new_user.email = email
@@ -63,12 +67,68 @@ def register(request):
 
             new_user.save()
 
-            authenticated_user = authenticate(username=username, password=password1)
-            login(request, authenticated_user)
+            new_user.profile.ddd = ddd
+            new_user.profile.telefone = telefone
+            new_user.profile.nickname = nickname
+            new_user.profile.save()
 
-            return redirect('home')
+            authenticated_user = authenticate(username=username, password=password1)
+            if authenticated_user is not None:
+                login(request, authenticated_user)
+                return redirect('home')
     else:
         form = RegisterForm()
 
     context = {"form": form}
     return render(request, 'users/register.html', context)
+
+@login_required
+def editar_perfil(request, username):
+    categorias = Categoria.objects.all()
+    usuario = get_object_or_404(User, username=username)
+    profile = Profile.objects.get_or_create(user=usuario)[0]
+
+    if request.method == "POST":
+        form = RegisterForm(request.POST, request.FILES, instance=usuario)
+        if form.is_valid():
+            form.save()
+            return redirect('editar_perfil', username=usuario.username)
+    else:
+        initial_data = {
+            'first_name': usuario.first_name,
+            'last_name': usuario.last_name,
+            'email': usuario.email,
+            'username': usuario.username,
+            'ddd': profile.ddd,
+            'telefone': profile.telefone,
+            'nickname': profile.nickname,
+            'sobre_voce': profile.sobre_voce,
+            'foto': profile.foto,
+            'foto_de_capa': profile.foto_de_capa,
+        }
+        form = RegisterForm(instance=usuario, initial=initial_data)
+
+    context = {'usuario': usuario, 'form': form, 'categorias': categorias}
+    return render(request, 'users/editar_perfil.html', context)
+
+@login_required
+def meus_eventos(request, username):
+    eventos = Evento.objects.filter(usuario=request.user).all()
+    categorias = Categoria.objects.all()
+    usuario = get_object_or_404(User, username=username)
+
+    if request.method == 'POST':
+        form = EventoForm(request.POST, request.FILES)
+        if form.is_valid():
+            evento = form.save(commit=False)
+            evento.usuario = request.user
+            evento.save()
+            messages.success(request, 'Evento cadastrado com sucesso!')
+            return redirect('meus_eventos', username=request.user.username)
+        else:
+            messages.error(request, 'Erro ao cadastrar o evento. Verifique os dados informados.')
+    else:
+        form = EventoForm()
+    
+    context = {'form': form, 'categorias': categorias, 'usuario': usuario, 'eventos': eventos}
+    return render(request, 'users/meus_eventos.html', context)

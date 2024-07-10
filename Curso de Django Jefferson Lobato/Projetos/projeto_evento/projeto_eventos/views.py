@@ -1,13 +1,14 @@
 from django.shortcuts import render, get_object_or_404 # type: ignore
-from projeto_eventos.models import Evento, Organizador, Categoria, Contato
+from projeto_eventos.models import Evento, Categoria, Contato
+from users.models import Profile
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 
 def home(request):
     categorias = Categoria.objects.all()
     lista_eventos = Evento.objects.all().order_by('data')[:12]
-    context = {'lista_eventos' : lista_eventos, 'categorias': categorias}
-    return render(request,'projeto_eventos/home.html', context)
+    context = {'lista_eventos': lista_eventos, 'categorias': categorias}
+    return render(request, 'projeto_eventos/home.html', context)
 
 def contato(request):
 

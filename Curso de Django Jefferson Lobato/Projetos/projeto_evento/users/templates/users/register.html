@@ -49,6 +49,24 @@
                         {{ form.last_name }}
                     </div>
                 </div>
+                <div class="lg:col-span-3 mt-2">
+                    <label for="id_nickname" class="block text-2xl font-serif leading-6 text-gray-900">Nickname</label>
+                    <div class="mt-2">
+                        {{ form.nickname }}
+                    </div>
+                </div>
+                <div class="sm:col-span-3 mt-2">
+                    <label for="id_ddd" class="block text-2xl font-serif leading-6 text-gray-900">DDD</label>
+                    <div class="mt-2">
+                        {{ form.ddd }}
+                    </div>
+                </div>
+                <div class="lg:col-span-3 mt-2">
+                    <label for="id_telefone" class="block text-2xl font-serif leading-6 text-gray-900">Telefone</label>
+                    <div class="mt-2">
+                        {{ form.telefone }}
+                    </div>
+                </div>
             </div>
         </div>
         <div class="border-b border-gray-900/10 pb-12 mt-10">
@@ -82,7 +100,6 @@
             </div>
         </div>
     </div>
-
 </form>
 
 {% endblock content %}

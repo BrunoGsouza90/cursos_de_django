@@ -1,4 +1,5 @@
 from django.db import models # type: ignore
+from django.contrib.auth.models import User
 
 class Organizador(models.Model):
     nome = models.CharField(max_length=50, blank=True)
@@ -39,7 +40,7 @@ class Evento(models.Model):
     pais = models.CharField(max_length=50, blank=True)
     data = models.DateTimeField(blank=True)
     imagem = models.ImageField(null=True, blank=True, upload_to="imagem_pics/")
-    organizador = models.ForeignKey(Organizador, on_delete=models.SET_NULL, null=True, blank=True)
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE)
     categoria = models.ForeignKey(Categoria, on_delete=models.SET_NULL, null=True, blank=True)
 
     def __str__(self):
