@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from .forms import RegisterForm, LoginForm, EventoForm
+from .forms import RegisterForm, LoginForm, EventoForm, UserRegisterForm
 from projeto_eventos.models import Categoria, Evento
 from django.contrib.auth.models import User
 from .models import Profile
@@ -39,45 +39,19 @@ def logout_view(request):
 
 def register(request):
     if request.method == "POST":
-        form = RegisterForm(request.POST, request.FILES)
+        form = UserRegisterForm(request.POST, request.FILES)
         if form.is_valid():
+            new_user = form.save()  # Salva o usuário e o perfil associado
+
+            # Autentica o usuário recém-registrado
             username = form.cleaned_data['username']
-            sobre_voce = form.cleaned_data.get('sobre_voce', '')
-            foto = form.cleaned_data.get('foto', None)
-            foto_de_capa = form.cleaned_data.get('foto_de_capa', None)
-            first_name = form.cleaned_data['first_name']
-            last_name = form.cleaned_data['last_name']
-            email = form.cleaned_data['email']
-            password1 = form.cleaned_data['password1']
-            nickname = form.cleaned_data.get('nickname', '')
-            ddd = form.cleaned_data['ddd']
-            telefone = form.cleaned_data['telefone']
-
-            new_user = form.save(commit=False)
-            new_user.email = email
-            new_user.first_name = first_name
-            new_user.last_name = last_name
-
-            if sobre_voce:
-                new_user.sobre_voce = sobre_voce
-            if foto:
-                new_user.foto = foto
-            if foto_de_capa:
-                new_user.foto_de_capa = foto_de_capa
-
-            new_user.save()
-
-            new_user.profile.ddd = ddd
-            new_user.profile.telefone = telefone
-            new_user.profile.nickname = nickname
-            new_user.profile.save()
-
-            authenticated_user = authenticate(username=username, password=password1)
+            password = form.cleaned_data['password1']
+            authenticated_user = authenticate(username=username, password=password)
             if authenticated_user is not None:
                 login(request, authenticated_user)
-                return redirect('home')
+                return redirect('home')  # Redireciona para a página inicial após o login
     else:
-        form = RegisterForm()
+        form = UserRegisterForm()
 
     context = {"form": form}
     return render(request, 'users/register.html', context)
