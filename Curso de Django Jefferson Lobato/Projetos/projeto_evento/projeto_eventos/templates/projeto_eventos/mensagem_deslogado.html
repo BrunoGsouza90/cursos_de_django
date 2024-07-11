@@ -1,0 +1,28 @@
+{% extends 'projeto_eventos/base_deslogado.html' %}
+
+{% block content %}
+
+<div class="m-16 p-16">
+    <div class="flex justify-center mt-8 m-16 p-16 ">
+        <div class="max-w-3xl w-full bg-white shadow-md rounded-lg overflow-hidden m-16 p-16 bg-gradient-to-b from-pink-100 via-purple-100 to-blue-200 border-2 border-blue-300 rounded-lg">
+            <h2 class="text-4xl font-bold font-serif text-center text-gray-800 py-4 bg-gray-100">Mensagens Recebidas</h2>
+    
+            <div class="px-6 py-4">
+                {% if msg %}
+                    {% for m in msg %}
+                    <div class="bg-white border border-gray-200 rounded-lg p-4 my-4">
+                        <p class="text-lg font-semibold text-gray-800">{{ m.nome }}</p>
+                        <p class="text-sm text-gray-600">{{ m.email }}</p>
+                        <p class="mt-2">{{ m.mensagem }}</p>
+                        <p class="text-xs text-gray-500 mt-2">Enviado em: {{ m.data_envio }}</p>
+                    </div>
+                    {% endfor %}
+                {% else %}
+                    <p class="text-lg text-gray-600 text-center py-4">Nenhuma mensagem recebida.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

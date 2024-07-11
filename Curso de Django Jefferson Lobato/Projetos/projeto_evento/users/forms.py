@@ -125,7 +125,6 @@ class EventoForm(forms.ModelForm):
     pais = forms.CharField(widget=forms.TextInput(attrs={'class': 'block w-full px-3 py-2 border border-blue-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'}))
     data = forms.DateTimeField(widget=forms.DateTimeInput(attrs={'class': 'block w-full px-3 py-2 border border-blue-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'}))
     imagem = forms.ImageField(required=False)
-
     categoria = forms.ModelChoiceField(queryset=Categoria.objects.all(), empty_label="Selecione uma categoria", widget=forms.Select(attrs={'class': 'block w-full px-3 py-2 border border-blue-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'}))
 
     class Meta:
@@ -137,15 +136,15 @@ class EventoUpdateForm(forms.ModelForm):
         model = Evento
         fields = ['titulo', 'descricao', 'rua', 'bairro', 'numero', 'cidade', 'estado', 'pais', 'data', 'imagem', 'categoria']
         widgets = {
-            'titulo': forms.TextInput(attrs={'class': 'block w-full px-3 py-4 border border-blue-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-sm placeholder-gray-400'}),
-            'descricao': forms.Textarea(attrs={'class': 'block w-full px-3 py-4 border border-blue-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-sm placeholder-gray-400'}),
-            'rua': forms.TextInput(attrs={'class': 'block w-full px-3 py-4 border border-blue-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-sm placeholder-gray-400'}),
-            'bairro': forms.TextInput(attrs={'class': 'block w-full px-3 py-4 border border-blue-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-sm placeholder-gray-400'}),
-            'numero': forms.NumberInput(attrs={'class': 'block w-full px-3 py-4 border border-blue-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-sm placeholder-gray-400'}),
-            'cidade': forms.TextInput(attrs={'class': 'block w-full px-3 py-4 border border-blue-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-sm placeholder-gray-400'}),
-            'estado': forms.TextInput(attrs={'class': 'block w-full px-3 py-4 border border-blue-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-sm placeholder-gray-400'}),
-            'pais': forms.TextInput(attrs={'class': 'block w-full px-3 py-4 border border-blue-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-sm placeholder-gray-400'}),
-            'data': forms.DateTimeInput(attrs={'class': 'block w-full px-3 py-4 border border-blue-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-sm placeholder-gray-400'}),
+            'titulo': forms.TextInput(attrs={'class': 'block w-full px-3 py-4 border border-blue-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-lg placeholder-gray-400'}),
+            'descricao': forms.Textarea(attrs={'class': 'block w-full px-3 py-4 border border-blue-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-lg placeholder-gray-400'}),
+            'rua': forms.TextInput(attrs={'class': 'block w-full px-3 py-4 border border-blue-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-lg placeholder-gray-400'}),
+            'bairro': forms.TextInput(attrs={'class': 'block w-full px-3 py-4 border border-blue-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-lg placeholder-gray-400'}),
+            'numero': forms.NumberInput(attrs={'class': 'block w-full px-3 py-4 border border-blue-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-lg placeholder-gray-400'}),
+            'cidade': forms.TextInput(attrs={'class': 'block w-full px-3 py-4 border border-blue-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-lg placeholder-gray-400'}),
+            'estado': forms.TextInput(attrs={'class': 'block w-full px-3 py-4 border border-blue-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-lg placeholder-gray-400'}),
+            'pais': forms.TextInput(attrs={'class': 'block w-full px-3 py-4 border border-blue-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-lg placeholder-gray-400'}),
+            'data': forms.DateTimeInput(attrs={'class': 'block w-full px-3 py-4 border border-blue-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-lg placeholder-gray-400'}),
             'imagem': forms.FileInput(attrs={'class': 'block w-full py-4'}),
-            'categoria': forms.Select(attrs={'class': 'block w-full px-3 py-4 border border-blue-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-sm'}),
+            'categoria': forms.Select(attrs={'class': 'block w-full px-3 py-4 border border-blue-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-lg'}),
         }

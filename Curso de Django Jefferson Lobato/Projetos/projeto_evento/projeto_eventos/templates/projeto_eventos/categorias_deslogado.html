@@ -1,18 +1,10 @@
-{% extends 'projeto_eventos/base_logado.html' %}
+{% extends 'projeto_eventos/base_deslogado.html' %}
 
 {% block content %}
     <div class="text-center bg-gradient-to-r from-yellow-400 via-red-500 to-pink-500 border-2 border-purple-600 py-6 px-8 rounded-lg shadow-lg">
         <h1 class="text-4xl font-serif text-white">
             Eventos da Categoria: {{ categoria.nome }}
         </h1>
-    </div>
-    <div class="text-center m-16 p-16">
-        <p class="font-serif text-4xl">{{ categoria.descricao }}</p>
-        {% if categoria.ativo_inativo == True %}
-            <p class="font-mono text-2xl text-green-600 mt-5">Categoria Ativada</p>
-        {% else %}
-            <p class="font-mono text-2xl text-red-600 mt-5">Categoria Desativada</p>
-        {% endif %}
     </div>
     <div class="bg-gradient-to-r from-pink-100 via-purple-200 to-blue-300 bg-opacity-30 grid grid-cols-3 gap-4 m-16 p-16 border border-gray-300 rounded-lg">
         {% for evento in eventos %}

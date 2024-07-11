@@ -10,54 +10,54 @@
                         {% csrf_token %}
                         <div class="space-y-4">
                             <div class="mt-5">
-                                <label for="id_titulo" class="block text-2xl font-serif leading-6 text-gray-900">Título</label>
+                                <label for="id_titulo" class="block text-3xl font-serif leading-6 text-gray-900">Título</label>
                                 {{ form.titulo }}
                             </div>
                             <div class="mt-5">
-                                <label for="id_descricao" class="block text-2xl font-serif leading-6 text-gray-900">Descrição</label>
+                                <label for="id_descricao" class="block text-3xl font-serif leading-6 text-gray-900">Descrição</label>
                                 {{ form.descricao }}
                             </div>
                             <div class="mt-5">
-                                <label for="id_rua" class="block text-2xl font-serif leading-6 text-gray-900">Rua</label>
+                                <label for="id_rua" class="block text-3xl font-serif leading-6 text-gray-900">Rua</label>
                                 {{ form.rua }}
                             </div>
                             <div class="mt-5">
-                                <label for="id_bairro" class="block text-2xl font-serif leading-6 text-gray-900">Bairro</label>
+                                <label for="id_bairro" class="block text-3xl font-serif leading-6 text-gray-900">Bairro</label>
                                 {{ form.bairro }}
                             </div>
                             <div class="mt-5">
-                                <label for="id_numero" class="block text-2xl font-serif leading-6 text-gray-900">Número</label>
+                                <label for="id_numero" class="block text-3xl font-serif leading-6 text-gray-900">Número</label>
                                 {{ form.numero }}
                             </div>
                             <div class="mt-5">
-                                <label for="id_cidade" class="block text-2xl font-serif leading-6 text-gray-900">Cidade</label>
+                                <label for="id_cidade" class="block text-3xl font-serif leading-6 text-gray-900">Cidade</label>
                                 {{ form.cidade }}
                             </div>
                             <div class="mt-5">
-                                <label for="id_estado" class="block text-2xl font-serif leading-6 text-gray-900">Estado</label>
+                                <label for="id_estado" class="block text-3xl font-serif leading-6 text-gray-900">Estado</label>
                                 {{ form.estado }}
                             </div>
                             <div class="mt-5">
-                                <label for="id_pais" class="block text-2xl font-serif leading-6 text-gray-900">País</label>
+                                <label for="id_pais" class="block text-3xl font-serif leading-6 text-gray-900">País</label>
                                 {{ form.pais }}
                             </div>
                             <div class="mt-5">
-                                <label for="id_data" class="block text-2xl font-serif leading-6 text-gray-900">Data</label>
+                                <label for="id_data" class="block text-3xl font-serif leading-6 text-gray-900">Data / Hora</label>
                                 {{ form.data }}
                             </div>
                             <div class="mt-5">
-                                <label for="id_imagem" class="block text-2xl font-serif leading-6 text-gray-900">Imagem</label>
+                                <label for="id_imagem" class="block text-3xl font-serif leading-6 text-gray-900">Imagem</label>
                                 {{ form.imagem }}
                             </div>
                             <div class="mt-5">
-                                <label for="id_categoria" class="block text-2xl font-serif leading-6 text-gray-900">Categoria</label>
+                                <label for="id_categoria" class="block text-3xl font-serif leading-6 text-gray-900">Categoria</label>
                                 {{ form.categoria }}
                             </div>
                         </div>
-                        <div class="flex justify-center mt-6">
-                            <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50">
-                                Atualizar Evento
-                            </button>
+                        <div class="flex items-center justify-center mb-6">
+                            <div class="flex justify-center mt-10">
+                                <button type="submit" class="bg-gradient-to-r from-pink-100 via-purple-200 to-blue-300 bg-opacity-30 text-black text-xl font-serif font-bold hover:text-white py-4 px-6 rounded-full shadow-lg transition duration-300 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50 hover:scale-110 focus:scale-110 border border-transparent hover:border-blue-500 focus:border-blue-500">Atualizar Evento</button>
+                            </div>
                         </div>
                     </form>
                 </div>
