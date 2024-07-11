@@ -52,7 +52,7 @@
                         <button id="userMenuButton"
                         class="flex items-center text-gray-300 hover:text-white focus:outline-none">
                             {% if user.profile.foto %}
-                                <img class="w-24 h-24 rounded-full transition-transform hover:scale-110 focus:scale-110 border-2 border-transparent hover:border-blue-500 focus:border-blue-500"
+                                <img class="w-24 h-24 rounded-full transition-transform hover:scale-110 focus:scale-110 border-2 border-x-green-700 hover:border-blue-500 focus:border-blue-500"
                                     src="{{ user.profile.foto.url }}"
                                     alt="Imagem de Perfil">
                                     <span class="ml-2 text-black text-2xl font-bold font-serif">&nbsp;&nbsp;Bem vindo, {{ user.username }}</span>

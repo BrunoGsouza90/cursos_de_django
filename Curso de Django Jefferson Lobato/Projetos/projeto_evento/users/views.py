@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from .forms import RegisterForm, LoginForm, EventoForm, UserRegisterForm
+from .forms import RegisterForm, LoginForm, EventoForm, UserRegisterForm, EventoUpdateForm
 from projeto_eventos.models import Categoria, Evento
 from django.contrib.auth.models import User
 from .models import Profile
@@ -41,15 +41,14 @@ def register(request):
     if request.method == "POST":
         form = UserRegisterForm(request.POST, request.FILES)
         if form.is_valid():
-            new_user = form.save()  # Salva o usuário e o perfil associado
+            new_user = form.save()
 
-            # Autentica o usuário recém-registrado
             username = form.cleaned_data['username']
             password = form.cleaned_data['password1']
             authenticated_user = authenticate(username=username, password=password)
             if authenticated_user is not None:
                 login(request, authenticated_user)
-                return redirect('home')  # Redireciona para a página inicial após o login
+                return redirect('home')
     else:
         form = UserRegisterForm()
 
@@ -119,3 +118,17 @@ def meus_eventos(request, username):
     
     context = {'form': form, 'categorias': categorias, 'usuario': usuario, 'eventos': eventos}
     return render(request, 'users/meus_eventos.html', context)
+
+def editar_evento(request, editar_id):
+    evento = get_object_or_404(Evento, pk=editar_id)
+    
+    if request.method == 'POST':
+        form = EventoUpdateForm(request.POST, request.FILES, instance=evento)
+        if form.is_valid():
+            form.save()
+            return redirect('meus_eventos', username=request.user.username)
+    else:
+        form = EventoUpdateForm(instance=evento)
+
+    context = {'form': form, 'eventos': evento}
+    return render(request, 'users/editar_evento.html', context)

@@ -131,3 +131,21 @@ class EventoForm(forms.ModelForm):
     class Meta:
         model = Evento
         fields = ['titulo', 'descricao', 'rua', 'bairro', 'numero', 'cidade', 'estado', 'pais', 'data', 'imagem', 'categoria']
+
+class EventoUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Evento
+        fields = ['titulo', 'descricao', 'rua', 'bairro', 'numero', 'cidade', 'estado', 'pais', 'data', 'imagem', 'categoria']
+        widgets = {
+            'titulo': forms.TextInput(attrs={'class': 'block w-full px-3 py-4 border border-blue-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-sm placeholder-gray-400'}),
+            'descricao': forms.Textarea(attrs={'class': 'block w-full px-3 py-4 border border-blue-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-sm placeholder-gray-400'}),
+            'rua': forms.TextInput(attrs={'class': 'block w-full px-3 py-4 border border-blue-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-sm placeholder-gray-400'}),
+            'bairro': forms.TextInput(attrs={'class': 'block w-full px-3 py-4 border border-blue-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-sm placeholder-gray-400'}),
+            'numero': forms.NumberInput(attrs={'class': 'block w-full px-3 py-4 border border-blue-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-sm placeholder-gray-400'}),
+            'cidade': forms.TextInput(attrs={'class': 'block w-full px-3 py-4 border border-blue-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-sm placeholder-gray-400'}),
+            'estado': forms.TextInput(attrs={'class': 'block w-full px-3 py-4 border border-blue-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-sm placeholder-gray-400'}),
+            'pais': forms.TextInput(attrs={'class': 'block w-full px-3 py-4 border border-blue-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-sm placeholder-gray-400'}),
+            'data': forms.DateTimeInput(attrs={'class': 'block w-full px-3 py-4 border border-blue-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-sm placeholder-gray-400'}),
+            'imagem': forms.FileInput(attrs={'class': 'block w-full py-4'}),
+            'categoria': forms.Select(attrs={'class': 'block w-full px-3 py-4 border border-blue-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-sm'}),
+        }

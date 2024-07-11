@@ -4,13 +4,13 @@
 
 {% block content %}
     <div class="m-16 p-16">
-        <div class="w-full flex mx-auto">
-            <div class="bg-gradient-to-b from-pink-100 via-purple-100 to-blue-200 border-2 border-blue-300 rounded-lg max-w-4xl mx-auto bg-white shadow overflow-hidden sm:rounded-lg p-16 m-16">
+        <div class="flex mx-auto">
+            <div class="bg-gradient-to-b from-pink-100 via-purple-100 to-blue-200 border-2 border-blue-300 rounded-lg mx-auto bg-white shadow overflow-hidden sm:rounded-lg p-16 m-16">
                 <h1 class="text-4xl font-serif font-bold text-gray-900 mb-4 text-center">{{ eventos.titulo }}</h1>
                 <div class="flex flex-wrap items-center mb-4 mx-auto">
                     {% if eventos.imagem %}
-                        <div class="w-96 mx-auto mt-10">
-                            <img src="{{ eventos.imagem.url }}" alt="{{ eventos.titulo }}" class="w-full h-auto rounded-lg shadow-md border border-blue-500">
+                        <div class="mx-auto mt-10"> 
+                            <img src="{{ eventos.imagem.url }}" alt="{{ eventos.titulo }}" class="w-96 h-auto rounded-lg shadow-md border border-blue-500">
                         </div>
                     {% endif %}
 
