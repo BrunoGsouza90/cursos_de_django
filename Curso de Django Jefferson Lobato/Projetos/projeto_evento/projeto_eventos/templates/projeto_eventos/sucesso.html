@@ -1,10 +1,10 @@
 {% extends 'projeto_eventos/base_logado.html' %}
 
 {% block content %}
-    <div class="mt-10">
-        <div class="max-w-lg mx-auto bg-white shadow p-8 rounded-lg m-4 p-4 border-2 border-gray-400">
-            <h1 class="text-3xl font-bold text-gray-800 text-center mb-8 mt-10">Mensagem Enviada</h1>
-            <p class="text-center">Sua mensagem foi enviada com sucesso!</p>
+    <div class="m-16 p-16">
+        <div class="bg-gradient-to-b from-pink-100 via-purple-100 to-blue-200 border-2 border-blue-300 rounded-lg max-w-lg mx-auto shadow p-8 m-16 p-16">
+            <h1 class="text-4xl font-bold font-serif text-gray-800 text-center mb-8 mt-10">Mensagem Enviada</h1>
+            <p class="text-center text-xl font-serif">Sua mensagem foi enviada com sucesso!</p>
         </div>
         {% for c in contato %}
             {{ c.nome }}

@@ -47,3 +47,9 @@ def sobre(request):
     categorias = Categoria.objects.all()
     context = {'categorias': categorias}
     return render(request,'projeto_eventos/sobre.html', context)
+
+def detalhes_evento(request, detalhes_id):
+    eventos = get_object_or_404(Evento, id=detalhes_id)
+    categorias = Categoria.objects.all()
+    context = {'categorias': categorias, 'eventos': eventos}
+    return render(request, 'projeto_eventos/detalhes_evento.html', context)

@@ -44,7 +44,7 @@ class Evento(models.Model):
     categoria = models.ForeignKey(Categoria, on_delete=models.SET_NULL, null=True, blank=True)
 
     def __str__(self):
-        return f'{self.data} - {self.titulo}'
+        return f'{self.id} - {self.data} - {self.titulo}'
     
     class Meta:
         verbose_name = 'Evento'
