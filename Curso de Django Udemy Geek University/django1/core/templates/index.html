@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Django 1 - Index</title>
+</head>
+<body>
+    <h1>Index</h1>
+    <!-- Aqui estamos fazendo menção a parte de um dos contextos
+            da views "index".
+        Em específico em "curso" e "outro" fazemos a menção
+            diretamente pois são queryStrings, já em "nomes",
+            precisamos usar um laço for, pois é uma querySet,
+            uma lista de items.  -->
+    <p>{{ curso }}</p>
+    <p>{{ outro }}</p>
+    <ul type="circle">
+
+    <!-- Abrindo o laço for. -->
+    {% for nome in nomes %}
+        <li>{{ nome }}</li>
+    
+    <!-- Fechando o laço for. -->
+    {% endfor %}
+    </ul>
+</body>
+</html>

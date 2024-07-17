@@ -1,3 +1,8 @@
+'''
+    Aqui neste arquivo faremos todas configurações do nosso projeto
+        Django Framework.
+'''
+
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -11,9 +16,20 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-^%jsj(8vebyop0-z=5ox^awj$v52=%(59lg_adye*t_$qr8zno'
 
 # SECURITY WARNING: don't run with debug turned on in production!
+
+'''
+    Aqui podemos ativar ou desativar o modo de depuração do Django.
+'''
 DEBUG = True
 
-ALLOWED_HOSTS = []
+'''
+    Aqui determinamos quais HOSTs e Domínios pode ser acessados
+        quando o modo de depuração do Django está desativado
+        ( DEBUG = False ).
+    Se aplicarmos ['*'] , estamos dizendo ao Django que todos os
+        Domínios e Hosts são permitidos.
+'''
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -25,6 +41,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
+    # Adição dos nossos aplicativos:
+    'core',
 ]
 
 MIDDLEWARE = [
@@ -42,7 +61,10 @@ ROOT_URLCONF = 'django1.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        
+        #   Estamos indicando aqui que dentro do nosso app, onde
+        #       armazenaremos nossos templates HTML.
+        'DIRS': ['templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -61,6 +83,12 @@ WSGI_APPLICATION = 'django1.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+
+'''
+    Por padrão o Django uso o Banco de Dado SQLite, mais podemos
+        configurar o ambiente para o Banco de Dados de nossa
+        preferência.
+'''
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -91,6 +119,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
+'''
+    Configuração para o idioma português do Brasil.
+'''
 LANGUAGE_CODE = 'pt-br'
 
 TIME_ZONE = 'America/Sao_Paulo'
