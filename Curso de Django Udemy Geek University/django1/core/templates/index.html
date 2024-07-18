@@ -24,5 +24,11 @@
     <!-- Fechando o laço for. -->
     {% endfor %}
     </ul>
+
+    <h2>Informações do Usuário:</h2>
+    <p>{{ status }}</p>
+    {% if nome_do_usuario != '' %}
+        <p>Bem-Vindo {{ nome_do_usuario }}!</p>
+    {% endif %}
 </body>
 </html>

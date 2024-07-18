@@ -14,7 +14,7 @@ from django.urls import path
         trabalhos relacionados as respostas e requisições
         HTTP.
 '''
-from . views import index, contato
+from core.views import index, contato
 
 '''
     Aqui serão criadas nossas rotas (endpoints) do nosso projeto

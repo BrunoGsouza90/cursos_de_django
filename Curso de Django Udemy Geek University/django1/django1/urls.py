@@ -29,9 +29,11 @@ from core.views import index, contato
 '''
 urlpatterns = [
     
-    # Criação da rota do django admin pode acessá-la usando o
-    #   endpoint 'admin/' .
-    path('admin/', admin.site.urls),
+    #   Criação da rota do django admin pode acessá-la usando o
+    #   endpoint 'painel/' .
+    #   Por padrão vem como admin/ , mas não é seguro, devemos colocar
+    #       uma url mais complexa.
+    path('painel/', admin.site.urls),
 
 
     #   Essa importação não seria ideal então comentamos...

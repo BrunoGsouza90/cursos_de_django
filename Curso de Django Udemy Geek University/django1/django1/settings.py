@@ -5,17 +5,10 @@
 
 from pathlib import Path
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-^%jsj(8vebyop0-z=5ox^awj$v52=%(59lg_adye*t_$qr8zno'
-
-# SECURITY WARNING: don't run with debug turned on in production!
 
 '''
     Aqui podemos ativar ou desativar o modo de depuração do Django.
@@ -32,14 +25,30 @@ DEBUG = True
 ALLOWED_HOSTS = ['*']
 
 
-# Application definition
-
+'''
+    Aqui ficam instalados os APPs padrões do Django e é aonde
+        inslaremos os nossos APPs do projeto.
+'''
 INSTALLED_APPS = [
+    
+    #   App responsável pela parte administrativa do Django.
     'django.contrib.admin',
+    
+    #   App responsável pela autentificação na área administrativa.
     'django.contrib.auth',
+
+    #   App responsável por permitir diferentes tipos de contéudos.
     'django.contrib.contenttypes',
+    
+    #   App responsável por criar sesões para os usuários autenticados.
     'django.contrib.sessions',
+    
+    #   App responsável por fazer a troca de mensagens entre as
+    #       aplicações.
     'django.contrib.messages',
+
+    #   Aplicação responsável por gerenciar arquivos estáticos, como
+    #       imagens, favicons, vídeos, áudios, e etc.
     'django.contrib.staticfiles',
     
     # Adição dos nossos aplicativos:

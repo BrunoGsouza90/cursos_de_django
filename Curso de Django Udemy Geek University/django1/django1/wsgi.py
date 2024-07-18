@@ -1,3 +1,7 @@
+'''
+    Esse arquivo é o arquivo padrão Python para aplicações Web.
+'''
+
 import os
 
 from django.core.wsgi import get_wsgi_application
