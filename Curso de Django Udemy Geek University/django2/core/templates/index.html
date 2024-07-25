@@ -1,0 +1,71 @@
+<!-- Código utilizado para carregar os arquivos estáticos. -->
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Forma correta de carregar os arquivos estáticos.
+        Esse comando faz a aplicação ir no settings e fazer
+            a análise do STATIC_URL e STATIC_ROOT e concactenar
+            as informações com o arquivo style.css mencionado. -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <title>Django 1 - Index</title>
+</head>
+<body>
+    <h1>Index</h1>
+
+    <!-- Forma correta de carregar imagens estáticas.
+        Aqui seguimos o mesmo padrão de importação do arquivo
+        de estilo CSS. -->
+    <img src="{% static 'images/Logo Django.png' %}" alt="Logo Django">
+
+    <h2>{{ curso }}</h2>
+
+    <p>{{ outro }}</p>
+
+    {% for produto in produtos %}
+        
+        <!-- Fazendo menção de colunas específicas da tabela
+                "Produto" criada no Banco de Dados. -->
+        <p>{{ produto.nome }}  -  {{ produto.estoque }}</p>
+
+    {% endfor %}
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Produto</th>
+                <th>Preço</th>
+            </tr>
+        </thead>
+
+        
+        <tbody>
+        {% for produto in produtos %}
+            <tr>
+
+                <!-- Aqui estamos criando um link que direcionará
+                        para o urls name="produto" .
+                    
+                    path('produto/<int:produto_pk>/', views.produto, name='produto'),
+                    
+                    Preciso mencionar o "produto.pk" pois a url tem um
+                        Endpoint Indivual "<int:produto_pk>" .-->
+                <td><a href="{% url 'produto' produto.pk %}">{{ produto.nome }}</a></td>
+                <td>{{ produto.preco }}</td>
+            </tr>
+        {% endfor %}   
+        </tbody>
+    </table>
+    <br><br>
+    <button onclick="clicar()">Clique aqui!</button>
+
+    <!-- Forma correta de carregar scripts de iteração JavaScript.
+        Aqui seguimos o mesmo padrão de importação do arquivo
+            de script.js. -->
+    <script src="{% static 'js/script.js' %}"></script>
+
+</body>
+</html>
