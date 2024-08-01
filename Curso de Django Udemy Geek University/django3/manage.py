@@ -1,10 +1,3 @@
-'''
-    Este arquivo é o arquivo responsável por facilitar a interação
-        com o projeto. Aqui encontraremos diversos comandos que
-        nos ajudaram a gerenciar e manter o projeto.
-    Para listar os comandos use o camando "python manage.py" .
-'''
-
 import os
 import sys
 

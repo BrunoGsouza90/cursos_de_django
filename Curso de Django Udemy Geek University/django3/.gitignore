@@ -1,0 +1,6 @@
+/llenv/*
+/static/*
+__pychace__
+*-*-
+*.pyc
+.idea
