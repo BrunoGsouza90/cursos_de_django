@@ -1,10 +1,7 @@
-from django.db.models import F
-from django.http import Http404, HttpResponseRedirect, HttpResponse
+from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
-from polls.models import Question, Choice, Casa, Empresa, Profissao, Pagina
-
-
+from polls.models import Question, Choice
 
 def index(request):
     latest_question_list = Question.objects.order_by('-pub_date')[:5]
@@ -26,7 +23,7 @@ def vote(request, question_id):
     except (KeyError,Choice.DoesNotExist):
         return render(request,"polls/detail.html",{"question": question, "error_message": "Você não selecionou uma escolha."})
     else:
-        selected_choice.votes = F("votes") + 1
+        selected_choice.votes += 1
         selected_choice.save()
         return HttpResponseRedirect(reverse("polls:results", kwargs={'question_id': question.id}))
 

@@ -1,5 +1,4 @@
 import datetime
-
 from django.db import models
 from django.utils import timezone
 
@@ -20,31 +19,3 @@ class Choice(models.Model):
 
     def __str__(self):
         return self.choice_text
-    
-class Empresa(models.Model):
-    registro = models.CharField(max_length=200)
-
-    def __str__(self):
-        return f'{self.registro}'
-
-class Profissao(models.Model):
-    registro = models.CharField(max_length=200)
-
-    def __str__(self):
-        return f'{self.registro}'
-    
-class Casa(models.Model):
-    nome = models.CharField(max_length=200,default='')
-    idade = models.IntegerField()
-    profissao = models.ForeignKey(Profissao,on_delete=models.CASCADE, default='')
-    empresa = models.ForeignKey(Empresa, on_delete=models.CASCADE, default='')
-
-    def __str__(self):
-        return f'{self.id} - {self.nome}'
-    
-class Pagina(models.Model):
-    link = models.CharField(max_length=200, default='')
-    link1 = models.CharField(max_length=200, default='')
-
-    def __str__(self):
-        return f'{self.link} - {self.link1}'
