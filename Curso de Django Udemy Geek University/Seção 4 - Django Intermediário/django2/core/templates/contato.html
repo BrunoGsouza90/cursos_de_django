@@ -1,0 +1,54 @@
+<!-- Aqui estamos carregando o Boostrap4 .-->
+{% load bootstrap4 %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Aqui estamos importando o Boostrap4 CSS. -->
+    {% bootstrap_css %}
+    <title>Contato</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Contato</h1>
+        
+        <!-- Aqui estamos importando as mensagens de sucesso/erro
+                do Boostrap4. -->
+        {% bootstrap_messages %}
+
+        <!-- Aqui criamos um formulário que enviará os dados
+                apartir da submissão para o views.contato
+                que foi especificado em sua url como 
+                name='contato', por meio do Método HTTP "POST". 
+                
+                core(urls.py):
+                path('contato/', views.contato, name='contato'),
+                
+                class=form  →   Classe que vamos especificar no CSS.
+                auto_complete=off    →   Aqui estamos desativando o
+                    sistema de ajuda de preenchimento de dados dos
+                    campos.
+                -->
+        <form action="{% url 'contato' %}" method="post" class="form" autocomplete="off">
+            
+            <!-- Tag de proteção do Django para proteção dos dados
+                    contra ataques. -->
+            {% csrf_token %}
+            
+            <!-- Importação da aplicação do Boostrap4 em formulários. -->
+            {% bootstrap_form form %}
+
+            <!-- Criação de um botão. -->
+            {% buttons %}
+                <button type="submit" class="btn btn-primary">Enviar Mensagem</button>
+            {% endbuttons %}
+        </form>
+    
+    </div>
+
+<!-- Aqui estamos importando o Boostrap4 JS e Jquery. -->
+{% bootstrap_javascript jquery='full' %}
+</body>
+</html>
