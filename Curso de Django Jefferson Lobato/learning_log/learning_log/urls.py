@@ -1,6 +1,5 @@
-from django.contrib import admin # type: ignore
-from django.urls import path,include # type: ignore
-
+from django.contrib import admin
+from django.urls import path,include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('learning_logs.urls')),
