@@ -35,7 +35,9 @@ def new_topic(request):
         # Dados de POST submetidos; processa os dados.
         form = TopicForm(request.POST)
         if form.is_valid():
-            form.save()
+            new_topic = form.save(commit=False)
+            new_topic.owner = request.user
+            new_topic.save()
             return HttpResponseRedirect(reverse('topics'))
     context = {'form': form}
     return render(request,'learning_logs/new_topic.html', context)
